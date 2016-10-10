@@ -13,6 +13,7 @@
 		8F89B7221DABD33000025441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F89B7201DABD33000025441 /* Main.storyboard */; };
 		8F89B7241DABD33000025441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F89B7231DABD33000025441 /* Assets.xcassets */; };
 		8F89B7271DABD33000025441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F89B7251DABD33000025441 /* LaunchScreen.storyboard */; };
+		8F89B72F1DABD3B400025441 /* SwipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F89B72E1DABD3B400025441 /* SwipeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8F89B7231DABD33000025441 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F89B7261DABD33000025441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F89B7281DABD33000025441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F89B72E1DABD3B400025441 /* SwipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				8F89B71A1DABD33000025441 /* AppDelegate.swift */,
 				8F89B71C1DABD33000025441 /* MasterViewController.swift */,
 				8F89B71E1DABD33000025441 /* DetailViewController.swift */,
+				8F89B72E1DABD3B400025441 /* SwipeCell.swift */,
 				8F89B7201DABD33000025441 /* Main.storyboard */,
 				8F89B7231DABD33000025441 /* Assets.xcassets */,
 				8F89B7251DABD33000025441 /* LaunchScreen.storyboard */,
@@ -142,6 +145,7 @@
 			files = (
 				8F89B71F1DABD33000025441 /* DetailViewController.swift in Sources */,
 				8F89B71D1DABD33000025441 /* MasterViewController.swift in Sources */,
+				8F89B72F1DABD3B400025441 /* SwipeCell.swift in Sources */,
 				8F89B71B1DABD33000025441 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
