@@ -9,39 +9,57 @@
 import UIKit
 
 class SwipeCell: UITableViewCell {
-
+    
+    @IBOutlet private weak var myContentView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-
-        let directions: [UISwipeGestureRecognizerDirection] = [.right, .left, .up, .down]
-        for direction in directions {
-            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(SwipeCell.respondToSwipeGesture(_:)))
-            gesture.direction = direction
-            self.addGestureRecognizer(gesture)
-        }
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(SwipeCell.handlePan(_:)))
+        
+        self.myContentView.addGestureRecognizer(gesture)
     }
     
-    func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
-        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-            switch swipeGesture.direction {
-            case UISwipeGestureRecognizerDirection.right:
-                print("Swiped right")
-            case UISwipeGestureRecognizerDirection.down:
-                print("Swiped down")
-            case UISwipeGestureRecognizerDirection.left:
-                print("Swiped left")
-            case UISwipeGestureRecognizerDirection.up:
-                print("Swiped up")
-            default:
-                break
+    func handlePan(_ recognizer:UIPanGestureRecognizer) {
+        let velocity = recognizer.velocity(in: self.myContentView)
+        let direction = getDirectionFromVelocity(velocity)
+        print(direction.description)
+    }
+    
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        print("-----------------")
+        return true
+    }
+    
+    func getDirectionFromVelocity(_ velocity: CGPoint) -> UISwipeGestureRecognizerDirection{
+        if abs(velocity.x) > abs(velocity.y) {
+            if velocity.x > 0 {
+                return .right
+            } else {
+                return .left
+            }
+        } else {
+            if velocity.y > 0 {
+                return .down
+            } else {
+                return .up
             }
         }
     }
 
+}
+
+extension UISwipeGestureRecognizerDirection {
+    var  description: String {
+        switch self {
+        case UISwipeGestureRecognizerDirection.left:
+            return "left"
+        case UISwipeGestureRecognizerDirection.right:
+            return "right"
+        case UISwipeGestureRecognizerDirection.up:
+            return "up"
+        default:
+            return "down"
+        }
+    }
 }

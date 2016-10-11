@@ -19,6 +19,17 @@ class MasterViewController: UITableViewController {
         objects.insert(NSDate(), at: 0)
         objects.insert(NSDate(), at: 0)
         objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+        objects.insert(NSDate(), at: 0)
+
+        self.tableView.isScrollEnabled = true
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
 
@@ -45,6 +56,8 @@ class MasterViewController: UITableViewController {
         let indexPath = IndexPath(row: 0, section: 0)
         self.tableView.insertRows(at: [indexPath], with: .automatic)
     }
+    
+
 
     // MARK: - Segues
 
@@ -100,8 +113,13 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 66.0
+        return 120.0
     }
 
+}
+extension MasterViewController:  UIGestureRecognizerDelegate{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }
 
