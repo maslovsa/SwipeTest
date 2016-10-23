@@ -30,6 +30,8 @@ class MasterViewController: UITableViewController {
         objects.insert(NSDate(), at: 0)
 
         self.tableView.isScrollEnabled = true
+        self.tableView.allowsSelection = false
+        
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
 
@@ -43,6 +45,8 @@ class MasterViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.isCollapsed
+        
+        self.tableView.isScrollEnabled = true
         super.viewWillAppear(animated)
     }
 

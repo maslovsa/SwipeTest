@@ -20,6 +20,7 @@ class SwipeCell: UITableViewCell {
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(SwipeCell.handlePan(_:)))
         gesture.cancelsTouchesInView = false
+        gesture.delegate = self
         self.myContentView.addGestureRecognizer(gesture)
     }
     
@@ -46,10 +47,7 @@ class SwipeCell: UITableViewCell {
         }
     }
     
-    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        //print("-----------------")
-        return true
-    }
+
     
     func getDirectionFromVelocity(_ velocity: CGPoint) -> UISwipeGestureRecognizerDirection{
         if abs(velocity.x) > abs(velocity.y) {
@@ -67,19 +65,13 @@ class SwipeCell: UITableViewCell {
         }
     }
 
-}
-
-extension UISwipeGestureRecognizerDirection {
-    var  description: String {
-        switch self {
-        case UISwipeGestureRecognizerDirection.left:
-            return "left"
-        case UISwipeGestureRecognizerDirection.right:
-            return "right"
-        case UISwipeGestureRecognizerDirection.up:
-            return "up"
-        default:
-            return "down"
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        if otherGestureRecognizer.view is UITableView {
+            print("++++++")
+            return true
         }
+        print("-----")
+        return false
     }
 }
