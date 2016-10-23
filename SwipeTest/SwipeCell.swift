@@ -8,26 +8,46 @@
 
 import UIKit
 
+let kIgnoreHysteresis: CGFloat = 5.0
+
 class SwipeCell: UITableViewCell {
     
     @IBOutlet private weak var myContentView: UIView!
+    var lastDir: UISwipeGestureRecognizerDirection?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(SwipeCell.handlePan(_:)))
-        
+        gesture.cancelsTouchesInView = false
         self.myContentView.addGestureRecognizer(gesture)
     }
     
     func handlePan(_ recognizer:UIPanGestureRecognizer) {
+        if recognizer.state != .ended {
+            return 
+        }
+        
         let velocity = recognizer.velocity(in: self.myContentView)
+        guard abs(velocity.x) >= kIgnoreHysteresis || abs(velocity.y) >= kIgnoreHysteresis  else {
+            return
+        }
+        
         let direction = getDirectionFromVelocity(velocity)
-        print(direction.description)
+        
+        if lastDir != nil {
+            if lastDir! != direction {
+                self.lastDir = direction
+                print(lastDir!.description)
+            }
+        } else {
+            lastDir = direction
+            print(lastDir!.description)
+        }
     }
     
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        print("-----------------")
+        //print("-----------------")
         return true
     }
     
