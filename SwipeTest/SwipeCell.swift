@@ -8,8 +8,6 @@
 
 import UIKit
 
-let kIgnoreHysteresis: CGFloat = 5.0
-
 class SwipeCell: UITableViewCell {
     
     @IBOutlet private weak var myContentView: UIView!
@@ -30,10 +28,6 @@ class SwipeCell: UITableViewCell {
         }
         
         let velocity = recognizer.velocity(in: self.myContentView)
-        guard abs(velocity.x) >= kIgnoreHysteresis || abs(velocity.y) >= kIgnoreHysteresis  else {
-            return
-        }
-        
         let direction = getDirectionFromVelocity(velocity)
         
         if lastDir != nil {
@@ -46,8 +40,6 @@ class SwipeCell: UITableViewCell {
             print(lastDir!.description)
         }
     }
-    
-
     
     func getDirectionFromVelocity(_ velocity: CGPoint) -> UISwipeGestureRecognizerDirection{
         if abs(velocity.x) > abs(velocity.y) {
@@ -67,11 +59,9 @@ class SwipeCell: UITableViewCell {
 
     override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
-        if otherGestureRecognizer.view is UITableView {
-            print("++++++")
+        if otherGestureRecognizer.view is UITableView { // Allows Parent TableView to scroll
             return true
         }
-        print("-----")
         return false
     }
 }

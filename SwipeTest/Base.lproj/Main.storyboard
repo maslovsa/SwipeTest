@@ -100,6 +100,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="myContentView" destination="37f-cq-3Eg" id="BbJ-o6-0gH"/>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" id="Mo9-tf-Kb8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -132,4 +133,7 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Mo9-tf-Kb8"/>
+    </inferredMetricsTieBreakers>
 </document>
